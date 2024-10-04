@@ -74,6 +74,11 @@ To run this project, you will need to add the following environment variables to
 This project showcases my skills in Python programming, web development, and API integration. Feel free to explore the code and contribute!
 
 
+## Documentation
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
+
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
