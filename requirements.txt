@@ -1,0 +1,6 @@
+yt-dlp 
+spotipy
+Flask
+requests
+python-dotenv
+ffmpeg-python

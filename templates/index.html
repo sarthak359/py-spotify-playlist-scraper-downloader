@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Playlist Downloader</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+        * { box-sizing: border-box; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: "Satisfy", cursive;
+            font-weight: 400;
+            font-style: normal;
+            overflow: hidden;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 10px 20px;
+            padding-top: 25px;
+            background-color: transparent; /* Semi-transparent background */
+            z-index: 10;
+        }
+        .navbar img {
+            padding-left: 80px;
+            height: 18px;
+            width: auto;
+        }
+        .spotify {
+            padding-left: 950px;
+        }
+        .spotify img {
+            height: 100px;
+        }
+        .slideshow-container {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            margin: 0;
+            overflow: hidden;
+        }
+        /* Fullscreen images */
+        .mySlides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Caption container */
+        .overlay-content {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+        .overlay-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: txtzoomInOut 10s ease-in-out infinite;
+        }
+        .playlist-button {
+            background-color: #fff;
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            min-width: 212px;
+            height: 49px;
+            color: #000;
+            border: 2.3px solid white; /* Top and bottom */
+            border-left: 1px solid white; /* Left */
+            border-right: 1px solid white; /* Right */
+            border-radius: 0;
+            padding: 0 30px;
+            font-size: 16px;
+            line-height: 47px;
+            font-weight: 700;
+            text-transform: capitalize; 
+        }
+        .overlay-content button {
+            background-color: transparent;
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            min-width: 212px;
+            height: 49px;
+            color: #ffff;
+            border: 2.3px solid white; /* Top and bottom */
+            border-left: 1px solid white; /* Left */
+            border-right: 1px solid white; /* Right */
+            border-radius: 0;
+            padding: 0 30px;
+            font-size: 16px;
+            line-height: 47px;
+            font-weight: 700;
+            text-transform: capitalize; 
+        }
+        .overlay-content button:hover {
+            background-color: #ffff;
+            color: black;
+        }
+        /* Fading animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 0.5s;
+        }
+        @keyframes fade {
+            from { opacity: .4 }
+            to { opacity: 1 }
+        }
+        @media only screen and (max-width: 300px) {
+            .overlay-content h1 {
+                font-size: 1.5rem;
+            }
+            .overlay-content button {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+        /* Zoom in and zoom out animation */
+        @keyframes zoomInOut {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes txtzoomInOut {
+            0% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+            100% { transform: scale(1.3); }
+        }
+        .mySlides img {
+            animation: zoomInOut 10s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar Section -->
+<div class="navbar">
+    <a href="" class="nav-brand">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo">
+    </a>
+    <a class="spotify" href="">
+        <img src="https://download.logo.wine/logo/Spotify/Spotify-Logo.wine.png" alt="">
+    </a>
+</div>
+
+<!-- Slideshow Container -->
+<div class="slideshow-container">
+    <div class="mySlides fade">
+        <img src="{{ url_for('static', filename='img/bg-1.jpg') }}" alt="Background image 1">
+    </div>
+
+    <div class="mySlides fade">
+        <img src="{{ url_for('static', filename='img/bg-2.jpg') }}" alt="Background image 1">
+    </div>
+
+    <div class="mySlides fade">
+        <img src="{{ url_for('static', filename='img/bg-3.jpg') }}" alt="Background image 1">
+    </div>
+
+    <!-- Overlay Content with Heading and Playlist -->
+    <div class="overlay-content">
+        {% if user %}
+            <h1>Welcome, {{ user }}!</h1>
+            <p>Select a playlist to download:</p>
+            <div>
+                {% if playlists %}
+                    {% for playlist in playlists %}
+                        <a href="{{ url_for('download_playlists', playlist_id=playlist.id) }}">
+                            <button style="margin-right:20px;margin-bottom:20px" class="playlist-button">{{ playlist.name }}</button>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <p>No playlists found.</p>
+                {% endif %}
+            </div>
+            <a href="/logout">
+                <button style="margin-right:20px;margin-bottom:20px" class="playlist-button">Logout</button>
+            </a>
+        {% else %}
+            <h1>You are not logged in.</h1>
+            <a href="/login">
+                <button style="margin-right:20px;margin-bottom:20px" class="playlist-button">Login with Spotify</button>
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    slides[slideIndex - 1].style.display = "block";  
+    setTimeout(showSlides, 10000); // Change image every 10 seconds
+}
+</script>
+
+</body>
+</html>
