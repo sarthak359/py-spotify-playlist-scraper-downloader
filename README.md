@@ -84,3 +84,6 @@ This project showcases my skills in Python programming, web development, and API
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
+- Disclaimer: This project is intended for educational purposes only. It is the responsibility of users to ensure they comply with copyright laws and the terms of service of Spotify and YouTube Music. The use of this project for downloading copyrighted material without permission is strictly prohibited.
+
+
