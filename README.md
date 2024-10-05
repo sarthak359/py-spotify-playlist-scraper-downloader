@@ -10,6 +10,7 @@ The **Spotify Playlist Downloader** is a Python application that allows users to
 - Displays user playlists for easy selection.
 - Downloads audio tracks in MP3 format.
 - Compiles downloaded tracks into a ZIP file for convenient downloading.
+- API keys and sensitive information are securely managed using environment variables, ensuring they are not exposed in the source code or public repositories.
 
 ## Requirements
 
