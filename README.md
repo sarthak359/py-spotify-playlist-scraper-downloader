@@ -77,7 +77,7 @@ This project showcases my skills in Python programming, web development, and API
 
 ## Documentation
 
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)]([https://www.linkedin.com/](https://www.linkedin.com/posts/sarthak-aggarwal-mru_python-webscraping-apiintegration-activity-7248362482661015552-nNdH?utm_source=share&utm_medium=member_desktop))
 
 
 ## License
