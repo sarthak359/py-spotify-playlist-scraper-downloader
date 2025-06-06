@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.secret_key = '61e7a503ec1b28bb0e1c7d5a141a6906'  # Change this to a strong secret key
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
-REDIRECT_URI = 'http://localhost:5000/callback'
+REDIRECT_URI = 'https://spotify-playlist-scraper-flax.vercel.app/callback'
 SCOPE = 'playlist-read-private user-library-read user-read-email playlist-read-collaborative'
 
 # Set up Spotify API authentication
